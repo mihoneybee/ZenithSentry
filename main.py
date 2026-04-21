@@ -1,5 +1,5 @@
-from src.logic import calcular_status_saude
-from src.api_service import buscar_frase_motivacional
+from logic import calcular_status_saude
+from api_service import buscar_frase_motivacional
 
 def executar():
     print("--- 🛡️ ZenithSentry v1.1.0 ---")
