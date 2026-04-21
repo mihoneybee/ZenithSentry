@@ -1,42 +1,52 @@
-# 🛡️ ZenithSentry - Bootcamp II (Etapa Intermediária)
+# 🛡️ ZenithSentry
 
-> **Link da Aplicação (Deploy):** [🚀 ACESSAR ZENITHSENTRY WEB](https://zenithsentry.streamlit.app)
+> **Status do Projeto:** > [![CI ZenithSentry](https://github.com/mihoneybee/ZenithSentry/actions/workflows/main.yml/badge.svg)](https://github.com/mihoneybee/ZenithSentry/actions)
+> ![Version](https://img.shields.io/badge/version-1.0.0-blue)
 
-| Status do Projeto | Versão | Pipeline | Branch |
-| :--- | :--- | :--- | :--- |
-| ![CI ZenithSentry](https://github.com/mihoneybee/ZenithSentry/actions/workflows/main.yml/badge.svg) | ![Version](https://img.shields.io/badge/version-1.1.0-blue) | ![Streamlit](https://img.shields.io/badge/Deploy-Streamlit-FF4B4B) | `entrega-intermediaria` |
+## 📋 Painel do Projeto
 
----
-
-## 🎯 Visão Geral da Entrega
-Esta etapa marca a evolução do ZenithSentry de um script local para uma solução conectada e acessível. O foco foi implementar o ciclo completo de desenvolvimento profissional: gestão de demandas, ramificação de código, integração com serviços externos e entrega contínua.
-
-### ✅ Critérios Atendidos:
-1. **Gestão de Demandas:** Criação e resolução da Issue #1 para rastreabilidade de novas funcionalidades.
-2. **Estratégia de Branching:** Todo o desenvolvimento foi realizado na branch `entrega-intermediaria`.
-3. **Consumo de API Pública:** Integração com a **ZenQuotes API** para fornecer suporte emocional personalizado baseado na carga horária do utilizador.
-4. **Teste de Integração:** Implementação de testes automatizados que validam a comunicação com a API externa.
-5. **Deploy Cloud:** Publicação da aplicação via **Streamlit Cloud**, permitindo o acesso público.
+| Atributo | Detalhes |
+| :--- | :--- |
+| **🎯 Público-Alvo** | Estudantes e Freelancers |
+| **💻 Interface** | CLI (Linha de Comando) |
+| **🛡️ Qualidade** | Pytest + Linting (Flake8) |
+| **🛠️ Pipeline** | GitHub Actions (CI) |
+| **⚖️ Licença** | MIT |
 
 ---
 
-## 🛠️ Tecnologias Adicionadas
-* **Python 3.x**
-* **Streamlit:** Framework para a interface web e deploy.
-* **Requests:** Biblioteca para consumo de APIs REST.
-* **Pytest:** Framework para testes unitários e de integração.
+## 🎯 Problema Real e Proposta de Valor
+No cenário atual de trabalho remoto e estudos intensos, a linha entre a produtividade e o esgotamento tornou-se invisível. Muitos profissionais e estudantes sofrem com o **Burnout** por não monitorarem sua carga horária de forma consciente.
+
+O **ZenithSentry** atua como uma "sentinela" da saúde mental. Ele categoriza a jornada diária em níveis de risco, alertando o usuário quando é necessário fazer pausas ou encerrar o expediente, garantindo que o "ápice" (Zenith) da produtividade não custe o bem-estar do indivíduo.
 
 ---
 
-## 🧪 Qualidade e Testes
-O projeto utiliza **GitHub Actions** para garantir que cada alteração passe pelos seguintes critérios:
-* **Linting:** Validação de estilo de código com Flake8.
-* **Testes de Integração:** O arquivo `test_integration.py` garante que a conexão com a ZenQuotes API está ativa e retornando dados válidos.
+## 🚀 Funcionalidades Principais
+* **Registro de Horas:** Entrada simples da carga horária líquida.
+* **Cálculo de Status de Saúde:**
+    * 🟢 **Verde (até 6h):** Ritmo equilibrado e saudável.
+    * 🟡 **Amarelo (6h a 9h):** Atenção! Alerta para pausas longas.
+    * 🔴 **Vermelho (acima de 9h):** Risco Crítico. Recomendação de parada imediata.
+* **Prevenção de Erros:** Validação de dados para impedir entradas negativas ou inconsistentes.
 
 ---
 
-## 🚀 Como Executar Localmente
-```bash
+## 🛠️ Tecnologias e Boas Práticas
+* **Linguagem:** Python 3.10+
+* **Testes Automatizados:** Implementados com `pytest` cobrindo caminhos felizes e casos de erro.
+* **Análise Estática (Linting):** Configurado com `flake8` para garantir conformidade com a PEP 8.
+* **CI (Integração Contínua):** Fluxo automatizado via GitHub Actions para validação a cada push.
+* **Versionamento Semântico:** Seguindo o padrão `MAJOR.MINOR.PATCH`.
+
+---
+
+## 📦 Como Instalar e Executar
+
+1. **Clonar o repositório:**
+   ```bash
+   git clone [https://github.com/mihoneybee/ZenithSentry.git](https://github.com/mihoneybee/ZenithSentry.git)
+
 # Instalar dependências
 pip install -r requirements.txt
 
