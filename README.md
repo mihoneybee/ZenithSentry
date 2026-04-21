@@ -11,7 +11,6 @@
 | **💻 Interface** | CLI (Linha de Comando) |
 | **🛡️ Qualidade** | Pytest + Linting (Flake8) |
 | **🛠️ Pipeline** | GitHub Actions (CI) |
-| **⚖️ Licença** | MIT |
 
 ---
 
