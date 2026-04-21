@@ -2,7 +2,7 @@ from logic import calcular_status_saude
 from api_service import buscar_frase_motivacional
 
 def executar():
-    print("--- 🛡️ ZenithSentry v1.1.0 ---")
+    print("--- ZenithSentry v1.1.0 ---")
     try:
         horas = float(input("Horas trabalhadas hoje: "))
         status, mensagem = calcular_status_saude(horas)

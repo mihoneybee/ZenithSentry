@@ -1,5 +1,5 @@
 import pytest
-from src.logic import calcular_status_saude
+from logic import calcular_status_saude
 
 def test_carga_saudavel():
     status, _ = calcular_status_saude(5)

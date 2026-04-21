@@ -1,7 +1,6 @@
 import requests
 
 def buscar_frase_motivacional():
-    """Consome a API ZenQuotes para retornar uma frase e autor."""
     try:
         response = requests.get("https://zenquotes.io/api/random", timeout=5)
         if response.status_code == 200:
