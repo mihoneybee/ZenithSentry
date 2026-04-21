@@ -37,4 +37,9 @@ O projeto utiliza **GitHub Actions** para garantir que cada alteração passe pe
 
 ## 🚀 Como Executar Localmente
 ```bash
+# Instalar dependências
+pip install -r requirements.txt
 
+# Executar aplicação web
+streamlit run app.py
+```
