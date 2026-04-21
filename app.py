@@ -1,4 +1,10 @@
 import streamlit as st
+import sys
+import os
+
+# Isso ajuda o Streamlit a encontrar a pasta 'src'
+sys.path.append(os.path.abspath(os.path.curdir))
+
 from src.logic import calcular_status_saude
 from src.api_service import buscar_frase_motivacional
 
