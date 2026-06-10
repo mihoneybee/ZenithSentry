@@ -91,12 +91,6 @@ pip install -r requirements.txt
 python main.py
 ```
 
-### Link da aplicação
-
-```bash
-https://zenithsentry.streamlit.app
-```
-
 **Exemplo de uso:**
 ```
 --- 🛡️ ZenithSentry: Monitor de Saúde Mental ---
@@ -181,44 +175,6 @@ flake8 src/ tests/ main.py --max-line-length=100
 
 ---
 
-## 🤝 Contribuição
-
-Agradecemos interesse em contribuir para o **ZenithSentry**! Aqui estão as orientações básicas para novos colaboradores:
-
-### Como Contribuir
-
-1. **Fork o repositório**
-   ```bash
-   # Clique no botão "Fork" no GitHub
-   ```
-
-2. **Clone seu fork**
-   ```bash
-   git clone https://github.com/seu-usuario/ZenithSentry.git
-   cd ZenithSentry
-   ```
-
-3. **Crie uma branch para sua feature**
-   ```bash
-   git checkout -b feature/minha-feature
-   ```
-
-4. **Faça suas alterações e commits**
-   ```bash
-   git add .
-   git commit -m "Adiciona: descrição clara da mudança"
-   ```
-
-5. **Envie para seu fork**
-   ```bash
-   git push origin feature/minha-feature
-   ```
-
-6. **Abra um Pull Request**
-   - Descreva claramente o propósito da mudança
-   - Referencie issues relacionadas
-   - Certifique-se que todos os testes passam
-
 ### Diretrizes
 
 - **Código:** Siga a PEP 8. Use `flake8` para validar.
@@ -255,12 +211,6 @@ O projeto segue **Versionamento Semântico (SemVer)**:
 
 ---
 
-## 📄 Licença
-
-Este projeto está sob licença MIT. Veja detalhes em [LICENSE](LICENSE) (se aplicável).
-
----
-
 ## 👨‍💻 Autores
 
 - **Desenvolvedor Principal:** [mihoneybee](https://github.com/mihoneybee)
@@ -273,6 +223,7 @@ Este projeto está sob licença MIT. Veja detalhes em [LICENSE](LICENSE) (se apl
 - 🧪 [Documentação Pytest](https://docs.pytest.org/)
 - 🔍 [Documentação Flake8](https://flake8.pycqa.org/)
 - 🎯 [GitHub Actions](https://github.com/features/actions)
+-  [ZenithSentry](https://zenithsentry.streamlit.app)
 
 ---
 
