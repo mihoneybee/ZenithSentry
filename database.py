@@ -1,25 +1,36 @@
+import os
 from supabase import create_client, Client
 
-# Substitua com as informações que você copiou do painel do Supabase
-SUPABASE_URL = "https://zgwbwiqbqesriutdejzj.supabase.co"
-SUPABASE_KEY = "miwJaz-rakwy4-vagryj"
+# Busca as chaves diretamente do ambiente (seguro)
+SUPABASE_URL = os.getenv("SUPABASE_URL")
+SUPABASE_KEY = os.getenv("SUPABASE_KEY")
 
-# Inicializa o cliente do banco de dados
+# Valida se as variáveis de ambiente foram configuradas
+if not SUPABASE_URL or not SUPABASE_KEY:
+    raise ValueError("Erro: As variáveis SUPABASE_URL e SUPABASE_KEY não foram configuradas!")
+
+# Inicializa o cliente do banco de dados Supabase
 supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
 
 def salvar_historico(horas, status, mensagem):
-    """Função para ESCREVER (Create) dados no banco"""
+    """Função para salvar (Create) os dados no banco de dados"""
     dados = {
         "horas_trabalhadas": horas,
         "status_calculado": status,
         "mensagem_suporte": mensagem
     }
-    # Envia os dados para a tabela correspondente no Supabase
-    resposta = supabase.table("historico_saude").insert(dados).execute()
-    return resposta
+    try:
+        resposta = supabase.table("historico_saude").insert(dados).execute()
+        return resposta
+    except Exception as e:
+        print(f"Erro ao salvar no banco: {e}")
+        return None
 
 def ler_historico():
-    """Função para LER (Read) os dados do banco"""
-    # Busca todos os registros do banco ordenados pelo mais recente
-    resposta = supabase.table("historico_saude").select("*").order("created_at", desc=True).execute()
-    return resposta.data
+    """Função para buscar (Read) todos os registros do banco"""
+    try:
+        resposta = supabase.table("historico_saude").select("*").order("created_at", desc=True).execute()
+        return resposta.data
+    except Exception as e:
+        print(f"Erro ao ler o banco: {e}")
+        return []
