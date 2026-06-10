@@ -1,4 +1,4 @@
-from src.logic import calcular_status_saude
+from src.logic import calcular_status_saude, obter_cor_ansi, obter_reset_ansi
 
 def executar():
     print("--- 🛡️ ZenithSentry: Monitor de Saúde Mental ---")
@@ -7,8 +7,12 @@ def executar():
             horas = float(input("Digite o total de horas trabalhadas hoje: "))
             status, mensagem = calcular_status_saude(horas)
             
-            print(f"\n[{status}]")
-            print(mensagem)
+            # Obter código de cor ANSI para o nível
+            cor = obter_cor_ansi(status)
+            reset = obter_reset_ansi()
+            
+            print(f"\n{cor}[{status}]{reset}")
+            print(f"{cor}{mensagem}{reset}")
             break
         except ValueError as e:
             print(f"Erro: {e}. Por favor, digite um número válido.")
