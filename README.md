@@ -91,6 +91,12 @@ pip install -r requirements.txt
 python main.py
 ```
 
+### Link da aplicação
+
+```bash
+https://zenithsentry.streamlit.app
+```
+
 **Exemplo de uso:**
 ```
 --- 🛡️ ZenithSentry: Monitor de Saúde Mental ---
