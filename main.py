@@ -1,5 +1,7 @@
 from src.logic import calcular_status_saude, obter_cor_ansi, obter_reset_ansi
 
+st.set_page_config(page_title="ZenithSentry",page_icon="🛡️")
+
 def executar():
     print("--- 🛡️ ZenithSentry: Monitor de Saúde Mental ---")
     while True:
