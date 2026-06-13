@@ -1,239 +1,57 @@
 # 🛡️ ZenithSentry
 
-> **Status do Projeto:** [![CI ZenithSentry](https://github.com/mihoneybee/ZenithSentry/actions/workflows/main.yml/badge.svg)](https://github.com/mihoneybee/ZenithSentry/actions)
-> ![Version](https://img.shields.io/badge/version-1.0.0-blue)
+O **ZenithSentry** é uma aplicação web inteligente desenvolvida em Python com a biblioteca **Streamlit**, projetada para atuar no monitoramento e gerenciamento de dados de saúde e bem-estar (como horas trabalhadas, status de saúde e mensagens de suporte). O sistema une uma interface visual interativa e fluida a um ecossistema de banco de dados robusto e seguro na nuvem.
 
-## 📋 Painel do Projeto
-
-| Atributo | Detalhes |
-| :--- | :--- |
-| **🎯 Público-Alvo** | Estudantes e Freelancers |
-| **💻 Interface** | CLI (Linha de Comando) |
-| **🛡️ Qualidade** | Pytest + Linting (Flake8) |
-| **🛠️ Pipeline** | GitHub Actions (CI) |
+🚀 **Acesse a aplicação em produção:** [ZenithSentry no Streamlit Cloud](https://zenithsentry.streamlit.app)
 
 ---
 
-## 🎯 Problema Real e Proposta de Valor
+## 👥 Equipe Desenvolvedora
 
-No cenário atual de trabalho remoto e estudos intensos, a linha entre a produtividade e o esgotamento tornou-se invisível. Muitos profissionais e estudantes sofrem com o **Burnout** por não monitorarem sua carga horária de forma consciente.
+Conheça os integrantes do grupo responsáveis pela concepção, design, engenharia de software e integração com banco de dados deste projeto:
 
-O **ZenithSentry** atua como uma "sentinela" da saúde mental. Ele categoriza a jornada diária em **cinco níveis de risco** progressivos, alertando o usuário quando é necessário fazer pausas ou encerrar o expediente, garantindo que o "ápice" (Zenith) da produtividade não custe o bem-estar do indivíduo.
-
----
-
-## 🚀 Funcionalidades Principais
-
-* **Registro de Horas:** Entrada simples da carga horária líquida trabalhada no dia.
-
-* **Cálculo Inteligente com 5 Níveis de Classificação:**
-  * 🔵 **Azul (0h a 4h):** Carga muito leve. Você pode aumentar sua produtividade se desejar.
-  * 🟢 **Verde (4h a 6h):** Ritmo saudável. Seu ritmo está equilibrado e sustentável.
-  * 🟡 **Amarelo (6h a 8h):** Atenção. Você está no limite saudável. Considere fazer uma pausa longa.
-  * 🟠 **Laranja (8h a 10h):** Risco elevado. Você está entrando em zona de perigo. Considere encerrar em breve.
-  * 🔴 **Vermelho (>10h):** Risco crítico. Limite de exaustão atingido. Pare imediatamente!
-
-* **Cores ANSI no Terminal:** Visualização intuitiva com códigos de cores para melhor compreensão visual.
-
-* **Validação Robusta:** Prevenção de entradas negativas ou inconsistentes com mensagens de erro claras.
-
-* **Escalabilidade:** Arquitetura modular pronta para futuras expansões (histórico, gráficos, integrações).
+* [**Gabriela Yasmin da Conceição Viana**](https://github.com/gabrielay-ctrl) — RA: 22505273
+* [**Guilherme Neves Lourenço**](https://github.com/TheGNL) — RA: 22509395
+* [**Mel Isis Costa Silva**](https://github.com/mihoneybee) — RA: 22508420
+* [**Vitor dos Santos Wamburg**](https://github.com/vitorwamburg-ux) — RA: 22510570
 
 ---
 
-## 🛠️ Tecnologias e Boas Práticas
+## 🗄️ Arquitetura e Conexão com o Banco de Dados (Supabase)
 
-* **Linguagem:** Python 3.10+
-* **Testes Automatizados:** Implementados com `pytest` com cobertura completa de todos os níveis e casos extremos.
-* **Análise Estática (Linting):** Configurado com `flake8` para garantir conformidade com a PEP 8.
-* **CI (Integração Contínua):** Fluxo automatizado via GitHub Actions para validação a cada push.
-* **Versionamento Semântico:** Seguindo o padrão `MAJOR.MINOR.PATCH`.
-* **Códigos ANSI:** Suporte a cores no terminal compatível com Windows, macOS e Linux.
+Para o armazenamento persistente e seguro das informações da aplicação, implementamos o **Supabase**, uma plataforma de *Backend-as-a-Service (BaaS)* fundamentada em **PostgreSQL**, um dos bancos de dados relacionais mais estáveis e confiáveis do mundo.
 
----
+### 🛡️ Protocolo de Segurança e Injeção de Dependências
+Seguindo rigorosamente as melhores práticas de segurança corporativa e engenharia de software (mitigando riscos de vazamento descritos pela OWASP), **nenhuma credencial de acesso, token ou URL de API foi exposta diretamente no código-fonte público.**
 
-## 📦 Como Instalar e Executar
-
-### Pré-requisitos
-- Python 3.10 ou superior
-- Git
-
-### Passo 1: Clonar o repositório
-
-```bash
-git clone https://github.com/mihoneybee/ZenithSentry.git
-cd ZenithSentry
-```
-
-### Passo 2: Criar um ambiente virtual (recomendado)
-
-**No Windows:**
-```bash
-python -m venv venv
-venv\Scripts\activate
-```
-
-**No macOS/Linux:**
-```bash
-python3 -m venv venv
-source venv/bin/activate
-```
-
-### Passo 3: Instalar as dependências
-
-```bash
-pip install -r requirements.txt
-```
-
-### Passo 4: Executar a aplicação
-
-```bash
-python main.py
-```
-
-**Exemplo de uso:**
-```
---- 🛡️ ZenithSentry: Monitor de Saúde Mental ---
-Digite o total de horas trabalhadas hoje: 7
-
-[AMARELO]
-Status: Atenção. Você está no limite saudável. Considere fazer uma pausa longa.
-```
+A engenharia de conexão foi isolada em um arquivo especializado chamado `database.py`:
+1. **Ambiente Isolado:** Utilizamos o módulo nativo do Python `os` através do método `os.getenv()` para realizar a leitura das credenciais diretamente da memória do servidor.
+2. **Camada Local:** Durante a fase de desenvolvimento no ecossistema local (VS Code), as chaves sensíveis residiram de forma estritamente confidencial em um arquivo oculto `.env` (completamente ignorado pelo versionamento do Git).
+3. **Produção Nuvem (Streamlit Secrets):** No ambiente definitivo hospedado no **Streamlit Cloud**, as chaves reais de produção `SUPABASE_URL` e `SUPABASE_KEY` foram criptografadas e injetadas de forma invisível através do painel administrativo de **Secrets** do Streamlit.
 
 ---
 
-## 🧪 Como Executar os Testes
+## ⚙️ Como o Banco de Dados Funciona na Aplicação?
 
-### Executar todos os testes com cobertura
+A integração opera sob o padrão CRUD (Create e Read) em tempo real por meio da tabela `historico_saude`. O comportamento lógico do banco de dados na aplicação segue o fluxo abaixo:
 
-```bash
-pytest -v --cov=src tests/
-```
+### 1. Inserção de Dados (Create)
+Quando o usuário preenche o formulário na interface visual do Streamlit e submete as informações, a aplicação aciona a função estruturada `salvar_historico(horas, status, mensagem)`. 
+* Os dados brutos informados pelo usuário, juntamente com o status calculado de forma analítica pela aplicação, são empacotados em um dicionário.
+* A biblioteca cliente do `supabase` realiza um disparo assíncrono enviando uma requisição do tipo `.insert(dados).execute()`.
+* O PostgreSQL do Supabase processa e armazena os dados, gerando automaticamente chaves primárias únicas (`id`) e carimbos de data/hora (`created_at`).
 
-### Executar testes de um arquivo específico
-
-```bash
-pytest tests/test_logic.py -v
-```
-
-### Executar um teste específico
-
-```bash
-pytest tests/test_logic.py::test_nivel_verde_ritmo_saudavel -v
-```
-
-### Visualizar cobertura em HTML
-
-```bash
-pytest --cov=src --cov-report=html tests/
-# Abrir htmlcov/index.html no navegador
-```
-
-### Testes disponíveis
-
-A suíte de testes cobre:
-
-- ✅ Todos os 5 níveis de classificação (AZUL, VERDE, AMARELO, LARANJA, VERMELHO)
-- ✅ Limites de intervalos para garantir fronteiras corretas
-- ✅ Valores especiais (0 horas, valores muito altos)
-- ✅ Validação de entradas negativas
-- ✅ Códigos ANSI de cores
-- ✅ Funções auxiliares de formatação
-
-**Total de testes:** 30+ casos cobertos
+### 2. Recuperação de Histórico (Read)
+A aplicação conta com uma camada de visualização de auditoria. Para alimentar essa seção:
+* É invocada a função `ler_historico()`, que executa uma query estruturada na tabela através do comando `.select("*").order("created_at", desc=True).execute()`.
+* O banco de dados retorna uma coleção estruturada em formato JSON contendo todos os registros já salvos.
+* O Streamlit captura esses dados e os renderiza instantaneamente na tela do usuário de forma legível em tabelas de dados ou cartões informativos, sempre organizando do registro mais recente para o mais antigo.
 
 ---
 
-## 📊 Estrutura do Projeto
+## 🛠️ Tecnologias e Dependências Utilizadas
 
-```
-ZenithSentry/
-│
-├── main.py                 # Ponto de entrada da aplicação
-├── requirements.txt        # Dependências do projeto
-├── VERSION                 # Versão atual do projeto
-├── README.md              # Este arquivo
-│
-├── src/
-│   ├── __init__.py        # Inicializador do pacote
-│   └── logic.py           # Lógica principal de cálculo de status
-│
-└── tests/
-    ├── __init__.py        # Inicializador do pacote de testes
-    └── test_logic.py      # Testes automatizados
-```
-
----
-
-## 🔧 Análise Estática (Linting)
-
-Para garantir conformidade com PEP 8, execute:
-
-```bash
-flake8 src/ tests/ main.py --max-line-length=100
-```
-
----
-
-### Diretrizes
-
-- **Código:** Siga a PEP 8. Use `flake8` para validar.
-- **Testes:** Adicione testes para novas funcionalidades. Mantenha cobertura acima de 80%.
-- **Commit:** Use mensagens descritivas em português ou inglês.
-- **Documentação:** Atualize o README e docstrings quando necessário.
-- **Python:** Mantenha compatibilidade com Python 3.10+.
-
-### Áreas para Contribuição
-
-- ✨ **Novas Features:** Histórico de monitoramento, exportação de dados, gráficos.
-- 🐛 **Bug Fixes:** Reporte problemas na seção de Issues.
-- 📚 **Documentação:** Melhorias no README e comentários de código.
-- 🧪 **Testes:** Aumente cobertura e adicione novos casos de teste.
-- 🌐 **Internacionalização:** Suporte para outros idiomas.
-
-### Código de Conduta
-
-- Seja respeitoso com todos os colaboradores
-- Feedbacks construtivos e objetivos
-- Não tolerância a discriminação de qualquer tipo
-
----
-
-## 📝 Versionamento
-
-O projeto segue **Versionamento Semântico (SemVer)**:
-
-- **MAJOR:** Mudanças incompatíveis na API
-- **MINOR:** Novas funcionalidades compatíveis
-- **PATCH:** Correções de bugs
-
-**Versão atual:** `1.0.0` (confira em [VERSION](VERSION))
-
----
-
-## 👨‍💻 Autores
-
-- **Desenvolvedor Principal:** [mihoneybee](https://github.com/mihoneybee)
-
----
-
-## 🔗 Links Úteis
-
-- 📖 [Documentação Python](https://docs.python.org/3/)
-- 🧪 [Documentação Pytest](https://docs.pytest.org/)
-- 🔍 [Documentação Flake8](https://flake8.pycqa.org/)
-- 🎯 [GitHub Actions](https://github.com/features/actions)
--  [ZenithSentry](https://zenithsentry.streamlit.app)
-
----
-
-## 💬 Feedback e Suporte
-
-- **Encontrou um bug?** Abra uma [Issue](https://github.com/mihoneybee/ZenithSentry/issues)
-- **Tem sugestões?** Vamos conversar nos [Discussions](https://github.com/mihoneybee/ZenithSentry/discussions)
-- **Quer contribuir?** Veja a seção [Contribuição](#-contribuição)
-
----
-
-**Última atualização:** Junho de 2026  
-**Status:** ✅ Ativo e em desenvolvimento contínuo
+* **Linguagem Principal:** Python 3.x
+* **Framework de Interface:** Streamlit (Criação de Web Apps rápidos e reativos)
+* **Ecossistema Backend:** Supabase (PostgreSQL Gerenciado em Nuvem)
+* **Biblioteca de Integração:** `supabase-py` (Conector e ORM oficial)
