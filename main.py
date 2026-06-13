@@ -6,13 +6,13 @@ def executar():
     try:
         horas = float(input("Horas trabalhadas hoje: "))
         status, mensagem = calcular_status_saude(horas)
-        
+
         print(f"\n[{status}] {mensagem}")
-        
-        # Novo: Integração com API
+
+        # Integração com API de frases motivacionais
         print("\n💡 Pensamento do dia para o seu equilíbrio:")
         print(buscar_frase_motivacional())
-        
+
     except ValueError as e:
         print(f"Erro: {e}")
 
